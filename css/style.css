@@ -1,0 +1,63 @@
+body {
+    background-color: #AA767C;
+}
+
+.machine {
+    height: 100vh;
+    width: 100vw;
+    text-align: justify;
+}
+
+h1 {
+    left: 3%;
+    position: relative;
+}
+
+h2 {
+    left: 3%;
+    position: relative;
+}
+
+.display {
+    height: 75vh;
+    width: 75vw;
+    border: solid;
+    border-color: #0C6291;
+    position: relative;
+    left: 3%;
+}
+
+img {
+    display: hidden;
+}
+
+/* 
+.slot1 {
+
+}
+
+.slot2 {
+
+}
+
+.slot3 {
+
+} */
+
+/* .controls {
+    bottom: 10%;
+    right: 10%;
+} */
+
+/* .buttons {
+    height: 20px;
+    width: 20x;
+    background-color:#FFA686;
+    position: relative;
+} */
+
+p {
+    height: 70px;
+    width: 70px;
+    background-color:#FFA686;
+}
