@@ -13,6 +13,12 @@ class Machine {
     item1 = "happy"
     item2 = "sad"
     item3 = "angry"
+    item4 = "upset"
+    item5 = "elated"
+    item6 = "pensive"
+    item7 = "annoyed"
+    item8 = "surprised"
+    item9 = "cranky"
 
     subtractScore(num1) {
         this.score -= num1
@@ -23,133 +29,99 @@ class Machine {
     }
 }
 // instantiating machine
-const slotMachine = new Machine(1, 5, 10, 25, 100, 100)
+const slotMachine = new Machine(1, 5, 10, 25, 50, 100)
 
 // arrays for my slots
-slot1 = [slotMachine.item1, slotMachine.item2, slotMachine.item3]
-slot2 = [slotMachine.item1, slotMachine.item2, slotMachine.item3]
-slot3 = [slotMachine.item1, slotMachine.item2, slotMachine.item3]
+slot1 = [slotMachine.item1, slotMachine.item2, slotMachine.item3, slotMachine.item4, slotMachine.item5, slotMachine.item6, slotMachine.item7, slotMachine.item8, slotMachine.item9]
+slot2 = [slotMachine.item1, slotMachine.item2, slotMachine.item3, slotMachine.item4, slotMachine.item5, slotMachine.item6, slotMachine.item7, slotMachine.item8, slotMachine.item9]
+slot3 = [slotMachine.item1, slotMachine.item2, slotMachine.item3, slotMachine.item4, slotMachine.item5, slotMachine.item6, slotMachine.item7, slotMachine.item8, slotMachine.item9]
 
-// a function that returns a random value from the arrays above
 function play() {
     let slot1play = slot1[Math.floor(Math.random() * slot1.length)]
     let slot2play = slot2[Math.floor(Math.random() * slot2.length)]
     let slot3play = slot3[Math.floor(Math.random() * slot3.length)]
     let slotArray = [slot1play, slot2play, slot3play]   
-    if(slotArray[0] === slotArray[1] && slotArray[0] === slotArray[2]){
-        return [true, slotArray]
+    renderPlay(slotArray)
+    if(checkMatch(slotArray) === true){
+        slotMachine.addScore(slotMachine.currentWager)
+        renderScore()
     }else{
-        return [false, slotArray]
+        slotMachine.subtractScore(slotMachine.currentWager)
+        renderScore()
     }
 }
-
 
 // a function to render the things on screen where they need to go
 function render() {
     renderScore()
-    // renderScreen()
-    renderButtons()
+    renderPlayButton()
+    renderWagerButtons()
 }
 render()
-function renderButtons() {
-    let wager1Element = document.getElementById("wager1")
-    wager1Element.addEventListener("click", wager1play)
-    let wager2Element = document.getElementById("wager2")
-    wager2Element.addEventListener("click", wager2play)
-    let wager3Element = document.getElementById("wager3")
-    wager3Element.addEventListener("click", wager3play)
-    let wager4Element = document.getElementById("wager4")
-    wager4Element.addEventListener("click", wager4play)
-    let wager5Element = document.getElementById("wager5")
-    wager5Element.addEventListener("click", wager5play)
+
+function renderPlayButton() {
+    let playElement = document.getElementById("play")
+    playElement.addEventListener("click", play)
 }
 
 function renderScore() {
     let scoreElement = document.getElementById("score")
     scoreElement.innerHTML = slotMachine.score
 }
-// this function assigns all the elements of the slot machine to the elements of the HTML. it's gonna be a big one!
-function renderScreen() {
-    let slot1item1Element = document.getElementById("item1A")
-    slot1item1Element.innerHTML = slot1[0]
 
-    let slot1item2Element = document.getElementById("item2A")
-    slot1item2Element.innerHTML = slot1[1]
-
-    let slot1item3Element = document.getElementById("item3A")
-    slot1item3Element.innerHTML = slot1[2]
-
-    let slot2item1Element = document.getElementById("item1B")
-    slot2item1Element.innerHTML = slot2[0]
-
-    let slot2item2Element = document.getElementById("item2B")
-    slot2item2Element.innerHTML = slot2[1]
-
-    let slot2item3Element = document.getElementById("item3B")
-    slot2item3Element.innerHTML = slot2[2]
-
-    let slot3item1Element = document.getElementById("item1C")
-    slot3item1Element.innerHTML = slot3[0]
-    
-    let slot3item2Element = document.getElementById("item2C")
-    slot3item2Element.innerHTML = slot3[1]
-
-    let slot3item3Element = document.getElementById("item3C")
-    slot3item3Element.innerHTML = slot3[2]
-}
-// a function that checks if the play function returns the same things=
-function checkWinner() {
-    play()
+function renderWagerButtons() {
+    let wager1Element = document.getElementById("wager1")
+    wager1Element.addEventListener("click", wager1Point)
+    let wager2Element = document.getElementById("wager2")
+    wager2Element.addEventListener("click", wager5Points)
+    let wager3Element = document.getElementById("wager3")
+    wager3Element.addEventListener("click", wager10Points)
+    let wager4Element = document.getElementById("wager4")
+    wager4Element.addEventListener("click", wager25Points)
+    let wager5Element = document.getElementById("wager5")
+    wager5Element.addEventListener("click", wager50Points)
 }
 
-function wager1play() {
-    if (play()[0] === false) {
-        slotMachine.subtractScore(slotMachine.wager1)
-        renderScore()
-        console.log(play()[1])
+
+function checkMatch(arr) {
+    if(arr[0] === arr[1] && arr[0] === arr[2]){
+        return true
     }else{
-        slotMachine.addScore(slotMachine.wager1)
-        renderScore()
-        console.log(play()[1])
+        return false
     }
 }
 
-function wager2play() {
-    if (play()[0] === false) {
-        slotMachine.subtractScore(slotMachine.wager2)
-        renderScore()
-    }else{
-        slotMachine.addScore(slotMachine.wager2)
-        renderScore()
-    }
+function renderPlay(arr) {
+    let slot1Display = document.querySelector(".slot1")
+    slot1Display.innerHTML = arr[0]
+    let slot2Display = document.querySelector(".slot2")
+    slot2Display.innerHTML = arr[1]
+    let slot3Display = document.querySelector(".slot3")
+    slot3Display.innerHTML = arr[2]
+}
+// this function will render the current wager
+function renderCurrentWager(wag) {
+    let currentWager = document.getElementById("currentWager")
+    slotMachine.currentWager = wag
+    currentWager.innerHTML = slotMachine.currentWager
 }
 
-function wager3play() {
-    if (play()[0] === false){
-        slotMachine.subtractScore(slotMachine.wager3)
-        renderScore()
-    }else{
-        slotMachine.addScore(slotMachine.wager3)
-        renderScore()
-    }
+function wager1Point() {
+    renderCurrentWager(slotMachine.wager1)
 }
 
-function wager4play() {
-    if (play()[0] === false){
-        slotMachine.subtractScore(slotMachine.wager4)
-        renderScore()
-    }else{
-        slotMachine.addScore(slotMachine.wager4)
-        renderScore()
-    }
+function wager5Points() {
+    renderCurrentWager(slotMachine.wager2)
 }
 
-function wager5play() {
-    if (play()[0] === false){
-        slotMachine.subtractScore(slotMachine.wager5)
-        renderScore()
-    }else{
-        slotMachine.addScore(slotMachine.wager5)
-        renderScore()
-    }
+function wager10Points() {
+    renderCurrentWager(slotMachine.wager3)
+}
+
+function wager25Points() {
+    renderCurrentWager(slotMachine.wager4)
+}
+
+function wager50Points() {
+    renderCurrentWager(slotMachine.wager5)
 }

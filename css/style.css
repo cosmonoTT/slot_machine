@@ -54,3 +54,17 @@ button {
     background-color:#FFA686;
     position: relative;
 }
+
+.wager {
+    height: 70px;
+    width: 70px;
+    background-color:#FFA686;
+    position: relative;
+}
+
+#currentWager {
+    height: 70px;
+    width: 70px;
+    background-color:#FFA686;
+    position: relative;
+}
