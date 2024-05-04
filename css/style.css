@@ -27,37 +27,30 @@ h2 {
     left: 3%;
 }
 
-img {
-    display: hidden;
-}
 
-/* 
 .slot1 {
-
+    display: flex;
+    flex-direction: row;
 }
 
 .slot2 {
-
+    display: flex;
 }
 
 .slot3 {
+    display: flex;
+}
 
-} */
-
-/* .controls {
-    bottom: 10%;
-    right: 10%;
-} */
-
-/* .buttons {
-    height: 20px;
-    width: 20x;
-    background-color:#FFA686;
-    position: relative;
-} */
-
-p {
+button {
     height: 70px;
     width: 70px;
     background-color:#FFA686;
+    position: relative;
+}
+
+#score {
+    height: 70px;
+    width: 70px;
+    background-color:#FFA686;
+    position: relative;
 }
