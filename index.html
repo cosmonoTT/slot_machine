@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Poiret+One&family=Rubik+Iso&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,36 +17,34 @@
 
         <h2>Match all 3 emotions to have good cognitive function and to win your wager!</h2>
 
-        <div class="display">
+        <div class="grid-container">
 
-            <div class="slot1">
-                <p id="item1A"></p>
-                <p id="item2A"></p>
-                <p id="item3A"></p>
+            <div class="wager-screen">
+                <p>Score:</p>
+                <p id="score"></p>
+                <p>Current Wager:</p>
+                <p id="currentWager"></p>
             </div>
 
-            <div class="slot2">
-                <p id="item1B"></p>
-                <p id="item2B"></p>
-                <p id="item3B"></p>
+            <div class="slot-images">
+                <img class="slot1Image" src="" alt="" height="50vh"">
+                <img class="slot2Image" src="" alt="" height="50vh">
+                <img class="slot3Image" src="" alt="" height="50vh">
             </div>
 
-            <div class="slot3">
-                <p id="item1C"></p> 
-                <p id="item2C"></p> 
-                <p id="item3C"></p> 
+            <div class="slot-text">
+                <p class="slot1Text"></p>
+                <p class="slot2Text"></p>
+                <p class="slot3Text"></p>
             </div>
 
-            <div class="controls">
+            <div class="control-screen">
                 <button id="wager1"><p>Wager 1 point</p></button>
                 <button id="wager2"><p>Wager 5 points</p></button>
                 <button id="wager3"><p>Wager 10 points</p></button>
                 <button id="wager4"><p>Wager 25 points</p></button>
                 <button id="wager5"><p>Wager 50 points</p></button>
                 <button id="play"><p>Spin</p></button>
-                <p id="score"></p>
-                <p class="wager">current wager</p>
-                <p id="currentWager"></p>
             </div>
 
         </div>
@@ -51,4 +52,5 @@
     </div>
 
 </body>
+
 </html>

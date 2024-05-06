@@ -9,23 +9,52 @@ class Machine {
         this.wager5 = wager5
         this.score = score
     }
-    // some variables for the items
-    item1 = "happy"
-    item2 = "sad"
-    item3 = "angry"
-    item4 = "upset"
-    item5 = "elated"
-    item6 = "pensive"
-    item7 = "annoyed"
-    item8 = "surprised"
-    item9 = "cranky"
+    // some objects for the item information
+    // we will have values in here soon
+    // all of the images were downloaded from emojiisland.com
+    item1 = {
+        emotion: "happy",
+        image: "/img/happy.png"
+    }
+    item2 = {
+        emotion: "sad",
+        image: "/img/sad.png"
+    }
+    item3 = {
+        emotion: "angry",
+        image: "/img/angry.png"
+    }
+    item4 = {
+        emotion: "upset",
+        image: "/img/upset.png"
+    }
+    item5 = {
+        emotion: "excited",
+        image: "/img/excited.png"
+    }
+    item6 = {
+        emotion: "crying",
+        image: "/img/crying.png"
+    }
+    item7 = {
+        emotion:"annoyed",
+        image: "/img/annoyed.png"
+    }
+    item8 = {
+        emotion: "surprised",
+        image: "/img/surprised.png"
+    }
+    item9 = {
+        emotion: "mindblown",
+        image: "/img/mindblown.png"
+    }
 
     subtractScore(num1) {
         this.score -= num1
     }
 
     addScore(num1) {
-        this.score -= num1
+        this.score += num1
     }
 }
 // instantiating machine
@@ -41,21 +70,24 @@ function play() {
     let slot2play = slot2[Math.floor(Math.random() * slot2.length)]
     let slot3play = slot3[Math.floor(Math.random() * slot3.length)]
     let slotArray = [slot1play, slot2play, slot3play]   
-    renderPlay(slotArray)
-    if(checkMatch(slotArray) === true){
+    if(checkMatch(slotArray) === true && slotMachine.score > 0){
         slotMachine.addScore(slotMachine.currentWager)
         renderScore()
-    }else{
+        renderPlay(slotArray)
+    }else if(checkMatch(slotArray) === false && slotMachine.score > 0){
         slotMachine.subtractScore(slotMachine.currentWager)
         renderScore()
+        renderPlay(slotArray)
+    }else{
+        alert("you don't have any more money!")
     }
 }
 
-// a function to render the things on screen where they need to go
 function render() {
     renderScore()
     renderPlayButton()
     renderWagerButtons()
+    renderCurrentWager(slotMachine.wager1)
 }
 render()
 
@@ -92,14 +124,20 @@ function checkMatch(arr) {
 }
 
 function renderPlay(arr) {
-    let slot1Display = document.querySelector(".slot1")
-    slot1Display.innerHTML = arr[0]
-    let slot2Display = document.querySelector(".slot2")
-    slot2Display.innerHTML = arr[1]
-    let slot3Display = document.querySelector(".slot3")
-    slot3Display.innerHTML = arr[2]
+    let slot1DisplayText = document.querySelector(".slot1Text")
+    slot1DisplayText.innerHTML = arr[0].emotion
+    let slot2DisplayText = document.querySelector(".slot2Text")
+    slot2DisplayText.innerHTML = arr[1].emotion
+    let slot3DisplayText = document.querySelector(".slot3Text")
+    slot3DisplayText.innerHTML = arr[2].emotion
+    let slot1DisplayImage = document.querySelector(".slot1Image")
+    slot1DisplayImage.src = arr[0].image
+    let slot2DisplayImage = document.querySelector(".slot2Image")
+    slot2DisplayImage.src = arr[1].image
+    let slot3DisplayImage = document.querySelector(".slot3Image")
+    slot3DisplayImage.src = arr[2].image
 }
-// this function will render the current wager
+
 function renderCurrentWager(wag) {
     let currentWager = document.getElementById("currentWager")
     slotMachine.currentWager = wag
@@ -125,3 +163,12 @@ function wager25Points() {
 function wager50Points() {
     renderCurrentWager(slotMachine.wager5)
 }
+
+// function renderAnimation() {
+//     let slot1DisplayImage = document.querySelector("slot1Image")
+//     slot1DisplayImage.src = 
+// }
+// const slotImages = [slotMachine.item1.image, slotMachine.item2.image, slotMachine.item3.image, slotMachine.item4.image, slotMachine.item5.image, slotMachine.item6.image, slotMachine.item7.image, slotMachine.item8.image, slotMachine.item9.image]
+
+
+
