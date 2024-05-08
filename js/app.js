@@ -1,12 +1,11 @@
 // a class for my machine
 class Machine {
 
-    constructor(wager1, wager2, wager3, wager4, wager5, score) {
+    constructor(wager1, wager2, wager3, wager4, score) {
         this.wager1 = wager1
         this.wager2 = wager2
         this.wager3 = wager3
         this.wager4 = wager4
-        this.wager5 = wager5
         this.score = score
     }
     // some objects for the item information
@@ -64,8 +63,7 @@ class Machine {
     play() {
         // animation function will go here
         //
-        let playButtonElement = document.getElementById("play")
-        playButtonElement.disabled = true
+        document.getElementById("play").disabled = true
         let slot1play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
         let slot2play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
         let slot3play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
@@ -117,13 +115,7 @@ class Machine {
             slotMachine.renderCurrentWager(slotMachine.wager3)
         })
         let wager4Element = document.getElementById("wager4")
-        wager4Element.addEventListener("click", function(wager) {
-            slotMachine.renderCurrentWager(slotMachine.wager4)
-        })
-        let wager5Element = document.getElementById("wager5")
-        wager5Element.addEventListener("click", function(wager) {
-            slotMachine.renderCurrentWager(slotMachine.wager5)
-        })
+        wager4Element.addEventListener("click", slotMachine.assignCustomWager)
     }
 
     renderPlay(arr) {
@@ -188,7 +180,7 @@ class Machine {
         }, 1000)
         setTimeout(function() {
             slotMachine.renderScore()
-        })
+        }, 1000)
         setTimeout(function() {
             slotMachine.renderPlay(arr)
         }, 1000)
@@ -201,10 +193,17 @@ class Machine {
         }, 1000)
     }
 
+    assignCustomWager() {
+        let customWager = prompt("Enter Custom Wager", "a number between 1 and 49")
+        slotMachine.wager4 = customWager
+        let currentWager = document.getElementById("currentWager")
+        slotMachine.currentWager = customWager
+        currentWager.innerHTML = slotMachine.wager4
+    }
 }
 
 // instantiating machine
-const slotMachine = new Machine(1, 5, 10, 25, 50, 100)
+const slotMachine = new Machine(1, 5, 10, null, 50)
 
 slotMachine.render()
 
