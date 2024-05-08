@@ -53,6 +53,8 @@ class Machine {
 
     slot = [this.items.item1, this.items.item2, this.items.item3, this.items.item4, this.items.item5, this.items.item6, this.items.item7, this.items.item8, this.items.item9]
 
+    animationImages = ["/img/loading1.png", "/img/loading2.png", "/img/loading3.png"]
+
     subtractScore(num1) {
         this.score -= num1
     }
@@ -67,24 +69,38 @@ class Machine {
             let slot1play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
             let slot2play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
             let slot3play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
-            let slotArray = [slot1play, slot2play, slot3play]   
+            let slot4play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
+            let slot5play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
+            let slotArray = [slot1play, slot2play, slot3play, slot4play, slot5play]   
             if(slotMachine.checkMatch(slotArray) === true){
+                slotMachine.renderAnimationImage()
                 setTimeout(function(wag) {
-                    slotMachine.addScore(slotMachine.currentWager)
+                    slotMachine.addScore(slotMachine.currentWager * 5)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function() {
                     slotMachine.renderButtonUsable()
                 }, 1000)
-            }else if(slotMachine.checkPartialMatch(slotArray) === true){
+            }else if(slotMachine.check4Matches(slotArray) === true){
+                slotMachine.renderAnimationImage()
                 setTimeout(function(wag) {
-                    slotMachine.addScore(slotMachine.currentWager / 2)
+                    slotMachine.addScore(slotMachine.currentWager * 2)
+                }, 1000)
+                slotMachine.renderPlayInfo(slotArray)
+                setTimeout(function(wag) {
+                    slotMachine.renderButtonUsable()
+                }, 1000)
+            }else if(slotMachine.check3Matches(slotArray) === true){
+                slotMachine.renderAnimationImage()
+                setTimeout(function(wag) {
+                    slotMachine.addScore(slotMachine.currentWager)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function(wag) {
                     slotMachine.renderButtonUsable()
                 }, 1000)
             }else{
+                slotMachine.renderAnimationImage()
                 setTimeout(function(wag) {
                     slotMachine.subtractScore(slotMachine.currentWager)
                 }, 1000)
@@ -137,14 +153,17 @@ class Machine {
         slot2DisplayImage.src = arr[1].image
         let slot3DisplayImage = document.querySelector(".slot3Image")
         slot3DisplayImage.src = arr[2].image
-        let matchType = document.getElementById("matchType")
+        let slot4DisplayImage = document.querySelector(".slot4Image")
+        slot4DisplayImage.src = arr[3].image
+        let slot5DisplayImage = document.querySelector(".slot5Image")
+        slot5DisplayImage.src = arr[4].image
     }
 
     renderMatchType(arr) {
         let matchType = document.getElementById("matchType")
         if (slotMachine.checkMatch(arr) === true) {
             matchType.innerHTML = "Match"
-        }else if(slotMachine.checkPartialMatch(arr) === true){
+        }else if(slotMachine.check4Matches(arr) === true || slotMachine.check3Matches(arr) === true){
             matchType.innerHTML = "Partial Match"
         }else{
             matchType.innerHTML = "Not a Match"
@@ -164,8 +183,16 @@ class Machine {
         }
     }
 
-    checkPartialMatch(arr) {
-        if (arr[0] === arr[1] && arr[0] !== arr[2] || arr[0] === arr[2] && arr[0] !== arr[1] || arr[1] === arr[2] && arr[0] !== arr[1]){
+    check4Matches(arr) {
+        if(arr[0] === arr[1] && arr[1] === arr[2] && arr[0] === arr[3] && arr[0] !== arr[4] || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] === arr[4] || arr[0] === arr[1] && arr[0] !== arr[2] && arr[0] === arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] === arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[1] === arr[3] && arr[1] === arr[4]){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    check3Matches(arr) {
+        if(arr[0] !== arr[1] && arr[0] !== arr[2] && arr[0] === arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] == arr[3] && arr[0] !== arr[3] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[2] === arr[3] && arr[3] !== arr[0] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[1] !== arr[3] && arr[1] === arr[4] || arr[0] !== arr[1] && arr[1] !== arr[2] && arr[1] === arr[3] && arr[1] === arr[4] || arr[0] !== arr[2] && arr[1] !== arr[2] && arr[2] === arr[3] && arr[3] === arr[4] || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] !== arr[4] || arr[0] === arr[1] && arr[0] === arr[3] && arr[0] !== arr[2] && arr[0] !== arr[4]) {
             return true
         }else{
             return false
@@ -173,7 +200,7 @@ class Machine {
     }
 
     checkMatch(arr) {
-        if(arr[0] === arr[1] && arr[1] === arr[2]){
+        if(arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === arr[3] && arr[0] === arr[4]){
             return true
         }else{
             return false
@@ -219,6 +246,24 @@ class Machine {
         document.getElementById("wager2").disabled = true
         document.getElementById("wager3").disabled = true
         document.getElementById("play").disabled = true
+    }
+
+    renderSlot1Play() {
+        let slot1DisplayImage = document.querySelector(".slot1Image")
+        slot1DisplayImage.src = arr[0].image
+    }
+
+    renderAnimationImage() { 
+        let slot1DisplayImage = document.querySelector(".slot1Image")
+        slot1DisplayImage.src = slotMachine.animationImages[0]
+        let slot2DisplayImage = document.querySelector(".slot2Image")
+        slot2DisplayImage.src = slotMachine.animationImages[1]
+        let slot3DisplayImage = document.querySelector(".slot3Image")
+        slot3DisplayImage.src = slotMachine.animationImages[2]
+        let slot4DisplayImage = document.querySelector(".slot4Image")
+        slot4DisplayImage.src = slotMachine.animationImages[1]
+        let slot5DisplayImage = document.querySelector(".slot5Image")
+        slot5DisplayImage.src = slotMachine.animationImages[0]
     }
 }
 
