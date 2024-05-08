@@ -15,10 +15,32 @@ h2 {
     position: relative;
 }
 
+h3 {
+    left: 3%;
+    position: relative;
+}
+
+.custom-wager {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 50vw;
+    height: 5vh;
+}
+
+#inputTitle {
+    font-size: 25px;
+    line-height: 0vh;
+}
+
+input {
+    font-size: 20px;
+}
+
 .grid-container {
     height: 80vh;
     display: grid;
-    grid-template-rows: 2fr 1fr 1fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr;
     position: relative;
 }
 
@@ -29,17 +51,6 @@ h2 {
     font-size: 35px;
     margin: 10px;
     text-align: center;
-}
-
-#customWager {
-    margin-left: 40px;
-}
-
-.slot-text {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    line-height: 20vh;
 }
 
 .slot-images {
@@ -56,4 +67,9 @@ button {
     height: 10vh;
     width: 10vh;
     background-color:#FFA686;
+}
+
+#enterInput {
+    height: 5vh;
+    width: 6vh;
 }

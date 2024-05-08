@@ -1,11 +1,12 @@
 // a class for my machine
 class Machine {
 
-    constructor(wager1, wager2, wager3, wager4, score) {
+    constructor(wager1, wager2, wager3, wager4, wager5, score) {
         this.wager1 = wager1
         this.wager2 = wager2
         this.wager3 = wager3
         this.wager4 = wager4
+        this.wager5 = wager5
         this.score = score
     }
     // some objects for the item information
@@ -61,33 +62,42 @@ class Machine {
     }
 
     play() {
-        // animation function will go here
-        //
-        document.getElementById("play").disabled = true
-        let slot1play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
-        let slot2play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
-        let slot3play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
-        let slotArray = [slot1play, slot2play, slot3play]   
-        if(slotMachine.checkMatch(slotArray) === true && slotMachine.score > 0){
-            setTimeout(function(wag) {
-                slotMachine.addScore(slotMachine.currentWager)
-            }, 1000)
-            slotMachine.renderPlayInfo(slotArray)
-            slotMachine.renderButtonUsable()
-        }else if(slotMachine.checkMatch(slotArray) === false && slotMachine.score > 0 && slotMachine.checkPartialMatch(slotArray) === false){
-            setTimeout(function(wag) {
-                slotMachine.subtractScore(slotMachine.currentWager)
-            }, 1000)
-            slotMachine.renderPlayInfo(slotArray)
-            slotMachine.renderButtonUsable()
-        }else if(slotMachine.checkMatch(slotArray) === false && slotMachine.score > 0 && slotMachine.checkPartialMatch(slotArray) === true){
-            setTimeout(function(wag) {
-                slotMachine.addScore(slotMachine.currentWager / 2)
-            }, 1000)
-            slotMachine.renderPlayInfo(slotArray)
-            slotMachine.renderButtonUsable()
+        if (slotMachine.score >= slotMachine.currentWager){
+            document.getElementById("play").disabled = true
+            let slot1play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
+            let slot2play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
+            let slot3play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
+            let slotArray = [slot1play, slot2play, slot3play]   
+            if(slotMachine.checkMatch(slotArray) === true){
+                setTimeout(function(wag) {
+                    slotMachine.addScore(slotMachine.currentWager)
+                }, 1000)
+                slotMachine.renderPlayInfo(slotArray)
+                setTimeout(function() {
+                    slotMachine.renderButtonUsable()
+                }, 1000)
+            }else if(slotMachine.checkPartialMatch(slotArray) === true){
+                setTimeout(function(wag) {
+                    slotMachine.addScore(slotMachine.currentWager / 2)
+                }, 1000)
+                slotMachine.renderPlayInfo(slotArray)
+                setTimeout(function(wag) {
+                    slotMachine.renderButtonUsable()
+                }, 1000)
+            }else{
+                setTimeout(function(wag) {
+                    slotMachine.subtractScore(slotMachine.currentWager)
+                }, 1000)
+                slotMachine.renderPlayInfo(slotArray)
+                setTimeout(function() {
+                    slotMachine.renderButtonUsable()
+                }, 1000)
+            }
+        }else if(slotMachine.score <= 0){
+            slotMachine.renderLoseScenario()
         }else{
-            alert("you don't have any more money!")
+            slotMachine.renderCurrentWager(slotMachine.wager5)
+            document.getElementById("play").disabled = true
         }
     }
 
@@ -114,17 +124,13 @@ class Machine {
         wager3Element.addEventListener("click", function(wager) {
             slotMachine.renderCurrentWager(slotMachine.wager3)
         })
-        let wager4Element = document.getElementById("wager4")
-        wager4Element.addEventListener("click", slotMachine.assignCustomWager)
+        let submitButton = document.getElementById("enterInput")
+        submitButton.addEventListener("click", function() {
+            slotMachine.renderCustomWagerButton()
+        })
     }
 
     renderPlay(arr) {
-        let slot1DisplayText = document.querySelector(".slot1Text")
-        slot1DisplayText.innerHTML = arr[0].emotion
-        let slot2DisplayText = document.querySelector(".slot2Text")
-        slot2DisplayText.innerHTML = arr[1].emotion
-        let slot3DisplayText = document.querySelector(".slot3Text")
-        slot3DisplayText.innerHTML = arr[2].emotion
         let slot1DisplayImage = document.querySelector(".slot1Image")
         slot1DisplayImage.src = arr[0].image
         let slot2DisplayImage = document.querySelector(".slot2Image")
@@ -146,9 +152,16 @@ class Machine {
     }
 
     renderCurrentWager(wag) {
-        let currentWager = document.getElementById("currentWager")
-        this.currentWager = wag
-        currentWager.innerHTML = this.currentWager
+        if(slotMachine.currentWager === slotMachine.wager5 || slotMachine.currentWager > slotMachine.score){
+            slotMachine.renderButtonUsable()
+            let currentWager = document.getElementById("currentWager")
+            this.currentWager = wag
+            currentWager.innerHTML = this.currentWager
+        }else{
+            let currentWager = document.getElementById("currentWager")
+            this.currentWager = wag
+            currentWager.innerHTML = this.currentWager
+        }
     }
 
     checkPartialMatch(arr) {
@@ -188,22 +201,29 @@ class Machine {
 
     renderButtonUsable() {
         let playButtonElement = document.getElementById("play")
-        setTimeout(function() {
-            playButtonElement.disabled = false
-        }, 1000)
+        playButtonElement.disabled = false
     }
 
-    assignCustomWager() {
-        let customWager = prompt("Enter Custom Wager", "a number between 1 and 49")
+    renderCustomWagerButton() {
+        let inputField = document.querySelector("input")
+        let customWager = inputField.value
         slotMachine.wager4 = customWager
         let currentWager = document.getElementById("currentWager")
         slotMachine.currentWager = customWager
         currentWager.innerHTML = slotMachine.wager4
+        slotMachine.renderButtonUsable()
+    }   
+    
+    renderLoseScenario() {
+        document.getElementById("wager1").disabled = true
+        document.getElementById("wager2").disabled = true
+        document.getElementById("wager3").disabled = true
+        document.getElementById("play").disabled = true
     }
 }
 
 // instantiating machine
-const slotMachine = new Machine(1, 5, 10, null, 50)
+const slotMachine = new Machine(1, 5, 10, null, "number must meet parameters", 50)
 
 slotMachine.render()
 

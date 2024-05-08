@@ -11,46 +11,45 @@
     <title>Slot Machine</title>
 <body>
     
-    <div class="machine">
+    
 
-        <h1>EMOTIONAL SLOT MACHINE</h1>
+    <h1>EMOTIONAL SLOT MACHINE</h1>
 
-        <h2>Match all 3 emotions to have good cognitive function and to win your wager!</h2>
+    <h2>Match all 3 emotions to win your wager! Match 2 emotions, and win back half the points you wager.</h2>
+    <h2>You lose your wager if you don't match any emotions. If you reach 0 points, you lose!</h2>
 
-        <div class="grid-container">
+    <div class="custom-wager">
+        <p id="inputTitle">Enter Custom Wager</p>
+        <input type="text" value="">
+        <button id="enterInput"><p>Enter</p></button>
+    </div>
 
-            <div class="wager-screen">
-                <p>Score:</p>
-                <p id="score"></p>
-                <p>Current Wager:</p>
-                <p id="currentWager"></p>
-                <p>Previous Play:</p>
-                <p id="matchType"></p>
-            </div>
+    <div class="grid-container">
 
-            <div class="slot-images">
-                <img class="slot1Image" src="" alt="" height="50vh"">
-                <img class="slot2Image" src="" alt="" height="50vh">
-                <img class="slot3Image" src="" alt="" height="50vh">
-            </div>
+        <div class="wager-screen">
+            <p>Points:</p>
+            <p id="score"></p>
+            <p>Current Wager:</p>
+            <p id="currentWager"></p>
+            <p>Previous Play:</p>
+            <p id="matchType"></p>
+        </div>
 
-            <div class="slot-text">
-                <p class="slot1Text"></p>
-                <p class="slot2Text"></p>
-                <p class="slot3Text"></p>
-            </div>
+        <div class="slot-images">
+            <img class="slot1Image" src="" alt="" height="50vh"">
+            <img class="slot2Image" src="" alt="" height="50vh">
+            <img class="slot3Image" src="" alt="" height="50vh">
+        </div>
 
-            <div class="control-screen">
-                <button id="wager1"><p>Wager 1 point</p></button>
-                <button id="wager2"><p>Wager 5 points</p></button>
-                <button id="wager3"><p>Wager 10 points</p></button>
-                <button id="wager4"><p>Custom Wager</p></button>
-                <button id="play"><p>Spin</p></button>
-            </div>
-
+        <div class="control-screen">
+            <button id="wager1"><p>Wager 1 point</p></button>
+            <button id="wager2"><p>Wager 5 points</p></button>
+            <button id="wager3"><p>Wager 10 points</p></button>
+            <button id="play"><p>Spin</p></button>
         </div>
 
     </div>
+
 
 </body>
 
