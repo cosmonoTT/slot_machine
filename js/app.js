@@ -13,39 +13,39 @@ class Machine {
     items = {
         item1: {
             emotion: "happy",
-            image: "./img/happy.png"
+            image: "./slot_machine/img/happy.png"
         },
         item2: {
             emotion: "sad",
-            image: "./img/sad.png"
+            image: "./slot_machine/img/sad.png"
         },
         item3: {
             emotion: "angry",
-            image: "./img/angry.png"
+            image: "./slot_machine/img/angry.png"
         },
         item4: {
             emotion: "upset",
-            image: "./img/upset.png"
+            image: "./slot_machine/img/upset.png"
         },
         item5: {
             emotion: "excited",
-            image: "./img/excited.png"
+            image: "./slot_machine/img/excited.png"
         },
         item6: {
             emotion: "crying",
-            image: "./img/crying.png"
+            image: "./slot_machine/img/crying.png"
         },
         item7: {
             emotion:"annoyed",
-            image: "./img/annoyed.png"
+            image: "./slot_machine/img/annoyed.png"
         },
         item8: {
             emotion: "surprised",
-            image: "./img/surprised.png"
+            image: "./slot_machine/img/surprised.png"
         },
         item9: {
             emotion: "mindblown",
-            image: "./img/mindblown.png"
+            image: "./slot_machine/img/mindblown.png"
         }
     }   
 
