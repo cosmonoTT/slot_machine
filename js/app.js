@@ -71,6 +71,7 @@ class Machine {
             let slot5play = slotMachine.slot[Math.floor(Math.random() * slotMachine.slot.length)]
             let slotArray = [slot1play, slot2play, slot3play, slot4play, slot5play]   
             if(slotMachine.checkMatch(slotArray) === true){
+                console.log("match")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 setTimeout(function(wag) {
@@ -81,6 +82,7 @@ class Machine {
                     slotMachine.renderButtonUsable()
                 }, 1000)
             }else if(slotMachine.check4Matches(slotArray) === true){
+                console.log("4 matched")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 setTimeout(function(wag) {
@@ -91,6 +93,7 @@ class Machine {
                     slotMachine.renderButtonUsable()
                 }, 1000)
             }else if(slotMachine.check3Matches(slotArray) === true){
+                console.log("3 matched")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 setTimeout(function(wag) {
@@ -327,13 +330,13 @@ class Machine {
     renderResetButtonUsable() {
         let resetButtonElement = document.getElementById("resetButton")
         resetButtonElement.style.display = "block"
+        resetButtonElement.style.backgroundColor = "red"
     }
 
     renderEnterCustomWagerButton() {
         let customWagerArea = document.querySelector(".custom-wager")
         customWagerArea.style.display = "flex"
-        let customWagerButton = document.getElementById("enterCustomWager")
-        customWagerButton.style.display = "none"
+        slotMachine.hideCustomWagerButton()
     }
 
     hideCustomWagerButton() {
@@ -342,7 +345,6 @@ class Machine {
     }
 }
 
-// instantiating machine
 const slotMachine = new Machine(1, 5, 10, null, "number must meet parameters", 50)
 
 slotMachine.render()
