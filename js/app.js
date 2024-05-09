@@ -74,8 +74,9 @@ class Machine {
             let slotArray = [slot1play, slot2play, slot3play, slot4play, slot5play]   
             if(slotMachine.checkMatch(slotArray) === true){
                 slotMachine.renderAnimationImage()
+                slotMachine.renderAnimation()
                 setTimeout(function(wag) {
-                    slotMachine.addScore(slotMachine.currentWager * 5)
+                    slotMachine.addScore(slotMachine.currentWager * slotMachine.score)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function() {
@@ -83,8 +84,9 @@ class Machine {
                 }, 1000)
             }else if(slotMachine.check4Matches(slotArray) === true){
                 slotMachine.renderAnimationImage()
+                slotMachine.renderAnimation()
                 setTimeout(function(wag) {
-                    slotMachine.addScore(slotMachine.currentWager * 2)
+                    slotMachine.addScore(slotMachine.currentWager * slotMachine.score / 2)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function(wag) {
@@ -92,6 +94,7 @@ class Machine {
                 }, 1000)
             }else if(slotMachine.check3Matches(slotArray) === true){
                 slotMachine.renderAnimationImage()
+                slotMachine.renderAnimation()
                 setTimeout(function(wag) {
                     slotMachine.addScore(slotMachine.currentWager)
                 }, 1000)
@@ -101,6 +104,7 @@ class Machine {
                 }, 1000)
             }else{
                 slotMachine.renderAnimationImage()
+                slotMachine.renderAnimation()
                 setTimeout(function(wag) {
                     slotMachine.subtractScore(slotMachine.currentWager)
                 }, 1000)
@@ -192,7 +196,7 @@ class Machine {
     }
 
     check3Matches(arr) {
-        if(arr[0] !== arr[1] && arr[0] !== arr[2] && arr[0] === arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] == arr[3] && arr[0] !== arr[3] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[2] === arr[3] && arr[3] !== arr[0] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[1] !== arr[3] && arr[1] === arr[4] || arr[0] !== arr[1] && arr[1] !== arr[2] && arr[1] === arr[3] && arr[1] === arr[4] || arr[0] !== arr[2] && arr[1] !== arr[2] && arr[2] === arr[3] && arr[3] === arr[4] || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] !== arr[4] || arr[0] === arr[1] && arr[0] === arr[3] && arr[0] !== arr[2] && arr[0] !== arr[4]) {
+        if(arr[0] !== arr[1] && arr[0] !== arr[2] && arr[0] === arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] === arr[4] || arr[0] !== arr[1] && arr[0] === arr[2] && arr[0] == arr[3] && arr[0] !== arr[3] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[2] === arr[3] && arr[3] !== arr[0] || arr[0] !== arr[1] && arr[1] === arr[2] && arr[1] !== arr[3] && arr[1] === arr[4] || arr[0] !== arr[1] && arr[1] !== arr[2] && arr[1] === arr[3] && arr[1] === arr[4] || arr[0] !== arr[2] && arr[1] !== arr[2] && arr[2] === arr[3] && arr[3] === arr[4] || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== arr[3] && arr[0] !== arr[4] || arr[0] === arr[1] && arr[0] === arr[3] && arr[0] !== arr[2] && arr[0] !== arr[4] || arr[0] === arr[1] && arr[0] !== arr[2] && arr[0] !== arr[3] && arr[0] === arr[4]) {
             return true
         }else{
             return false
@@ -264,6 +268,39 @@ class Machine {
         slot4DisplayImage.src = slotMachine.animationImages[1]
         let slot5DisplayImage = document.querySelector(".slot5Image")
         slot5DisplayImage.src = slotMachine.animationImages[0]
+    }
+
+    renderAnimation() {
+        $(".slot1Image").animate({
+            height:"6vh"
+        })
+        $(".slot1Image").animate({
+            height: "7vh"
+        })
+        $(".slot2Image").animate({
+            height:"8vh"
+        })
+        $(".slot2Image").animate({
+            height:"7vh"
+        })
+        $(".slot3Image").animate({
+            height:"6vh"
+        })
+        $(".slot3Image").animate({
+            height:"7vh"
+        })
+        $(".slot4Image").animate({
+            height:"8vh"
+        })
+        $(".slot4Image").animate({
+            height:"7vh"
+        })
+        $(".slot5Image").animate({
+            height:"6vh"
+        })
+        $(".slot5Image").animate({
+            height:"7vh"
+        })
     }
 }
 
