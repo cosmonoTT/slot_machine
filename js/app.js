@@ -86,7 +86,7 @@ class Machine {
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 setTimeout(function(wag) {
-                    slotMachine.addScore(slotMachine.currentWager * slotMachine.score / 2)
+                    slotMachine.addScore(slotMachine.currentWager * slotMachine.score / 10)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function(wag) {
@@ -115,6 +115,7 @@ class Machine {
             }
         }else if(slotMachine.score <= 0){
             slotMachine.renderLoseScenario()
+            slotMachine.renderResetButtonUsable()
         }else{
             slotMachine.renderCurrentWager(slotMachine.wager5)
             document.getElementById("play").disabled = true
@@ -216,6 +217,7 @@ class Machine {
         this.renderPlayButton()
         this.renderWagerButtons()
         this.renderCurrentWager(this.wager1)
+        this.renderResetButton()
     }
 
     renderPlayInfo(arr) {
@@ -250,11 +252,6 @@ class Machine {
         document.getElementById("wager2").disabled = true
         document.getElementById("wager3").disabled = true
         document.getElementById("play").disabled = true
-    }
-
-    renderSlot1Play() {
-        let slot1DisplayImage = document.querySelector(".slot1Image")
-        slot1DisplayImage.src = arr[0].image
     }
 
     renderAnimationImage() { 
@@ -301,6 +298,28 @@ class Machine {
         $(".slot5Image").animate({
             height:"7vh"
         })
+    }
+
+    resetGame() {
+        slotMachine.score += 50
+        document.getElementById("wager1").disabled = false
+        document.getElementById("wager2").disabled = false
+        document.getElementById("wager3").disabled = false
+        document.getElementById("play").disabled = false
+        slotMachine.renderScore()
+        let resetButtonElement = document.getElementById("resetButton")
+        resetButtonElement.style.display = "none"
+    }
+    
+    renderResetButton() {
+        let resetButtonElement = document.getElementById("resetButton")
+        resetButtonElement.addEventListener("click", slotMachine.resetGame)
+        resetButtonElement.style.display = "none"
+    }
+
+    renderResetButtonUsable() {
+        let resetButtonElement = document.getElementById("resetButton")
+        resetButtonElement.style.display = "block"
     }
 }
 
