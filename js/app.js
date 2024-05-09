@@ -9,51 +9,49 @@ class Machine {
         this.wager5 = wager5
         this.score = score
     }
-    // some objects for the item information
-    // add values soon?
-    // all of the images were downloaded from emojiisland.com
+
     items = {
         item1: {
             emotion: "happy",
-            image: "/img/happy.png"
+            image: "img/happy.png"
         },
         item2: {
             emotion: "sad",
-            image: "/img/sad.png"
+            image: "img/sad.png"
         },
         item3: {
             emotion: "angry",
-            image: "/img/angry.png"
+            image: "img/angry.png"
         },
         item4: {
             emotion: "upset",
-            image: "/img/upset.png"
+            image: "img/upset.png"
         },
         item5: {
             emotion: "excited",
-            image: "/img/excited.png"
+            image: "img/excited.png"
         },
         item6: {
             emotion: "crying",
-            image: "/img/crying.png"
+            image: "img/crying.png"
         },
         item7: {
             emotion:"annoyed",
-            image: "/img/annoyed.png"
+            image: "img/annoyed.png"
         },
         item8: {
             emotion: "surprised",
-            image: "/img/surprised.png"
+            image: "img/surprised.png"
         },
         item9: {
             emotion: "mindblown",
-            image: "/img/mindblown.png"
+            image: "img/mindblown.png"
         }
     }   
 
     slot = [this.items.item1, this.items.item2, this.items.item3, this.items.item4, this.items.item5, this.items.item6, this.items.item7, this.items.item8, this.items.item9]
 
-    animationImages = ["/img/loading1.png", "/img/loading2.png", "/img/loading3.png"]
+    animationImages = ["img/loading1.png", "img/loading2.png", "img/loading3.png"]
 
     subtractScore(num1) {
         this.score -= num1
@@ -327,4 +325,3 @@ class Machine {
 const slotMachine = new Machine(1, 5, 10, null, "number must meet parameters", 50)
 
 slotMachine.render()
-
