@@ -26,6 +26,13 @@ h3 {
     justify-content: space-evenly;
     width: 50vw;
     height: 5vh;
+    display: none;
+    flex-wrap: wrap;
+}
+
+.hiding-buttons {
+    left: 5%;
+    position: relative;
 }
 
 #inputTitle {

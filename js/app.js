@@ -84,7 +84,7 @@ class Machine {
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 setTimeout(function(wag) {
-                    slotMachine.addScore(slotMachine.currentWager * slotMachine.score / 10)
+                    slotMachine.addScore(slotMachine.currentWager * slotMachine.score / 2)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function(wag) {
@@ -114,6 +114,7 @@ class Machine {
         }else if(slotMachine.score <= 0){
             slotMachine.renderLoseScenario()
             slotMachine.renderResetButtonUsable()
+            slotMachine.hideCustomWagerButton()
         }else{
             slotMachine.renderCurrentWager(slotMachine.wager5)
             document.getElementById("play").disabled = true
@@ -147,6 +148,8 @@ class Machine {
         submitButton.addEventListener("click", function() {
             slotMachine.renderCustomWagerButton()
         })
+        let enterCustomWager = document.getElementById("enterCustomWager")
+        enterCustomWager.addEventListener("click", slotMachine.renderEnterCustomWagerButton)
     }
 
     renderPlay(arr) {
@@ -243,6 +246,10 @@ class Machine {
         slotMachine.currentWager = customWager
         currentWager.innerHTML = slotMachine.wager4
         slotMachine.renderButtonUsable()
+        let customWagerArea = document.querySelector(".custom-wager")
+        customWagerArea.style.display = "none"
+        let enterCustomWager = document.getElementById("enterCustomWager")
+        enterCustomWager.style.display = "block"
     }   
     
     renderLoseScenario() {
@@ -307,6 +314,8 @@ class Machine {
         slotMachine.renderScore()
         let resetButtonElement = document.getElementById("resetButton")
         resetButtonElement.style.display = "none"
+        let customWagerButton = document.getElementById("enterCustomWager")
+        customWagerButton.style.display = "block"
     }
     
     renderResetButton() {
@@ -318,6 +327,18 @@ class Machine {
     renderResetButtonUsable() {
         let resetButtonElement = document.getElementById("resetButton")
         resetButtonElement.style.display = "block"
+    }
+
+    renderEnterCustomWagerButton() {
+        let customWagerArea = document.querySelector(".custom-wager")
+        customWagerArea.style.display = "flex"
+        let customWagerButton = document.getElementById("enterCustomWager")
+        customWagerButton.style.display = "none"
+    }
+
+    hideCustomWagerButton() {
+      let customWagerButton = document.getElementById("enterCustomWager")
+      customWagerButton.style.display = "none"  
     }
 }
 
