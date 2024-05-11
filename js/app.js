@@ -53,8 +53,6 @@ class Machine {
 
     animationImages = ["./img/loading1.png", "./img/loading2.png", "./img/loading3.png"]
 
-    audio = ["./audio/play.mp3"]
-
     subtractScore(num1) {
         this.score = this.score - num1
     }
@@ -92,6 +90,9 @@ class Machine {
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 slotMachine.renderPlaySound()
+                setTimeout(function() {
+                    slotMachine.renderMatch4Animation()
+                }, 1500)
                 setTimeout(function() {
                     slotMachine.renderWinSound()
                 }, 2000)
@@ -134,8 +135,11 @@ class Machine {
             }
         }else if(slotMachine.score <= 0){
             slotMachine.renderLoseScenario()
-            slotMachine.renderResetButtonUsable()
             slotMachine.hideCustomWagerButton()
+            slotMachine.renderLoserSound()
+            setTimeout(function() {
+                slotMachine.renderResetButtonUsable()
+            }, 2000)
         }else{
             slotMachine.renderCurrentWager(slotMachine.wager5)
             document.getElementById("play").disabled = true
@@ -190,8 +194,10 @@ class Machine {
         let matchType = document.getElementById("matchType")
         if (slotMachine.checkMatch(arr) === true) {
             matchType.innerHTML = "Match"
-        }else if(slotMachine.check4Matches(arr) === true || slotMachine.check3Matches(arr) === true){
-            matchType.innerHTML = "Partial Match"
+        }else if(slotMachine.check4Matches(arr) === true){
+            matchType.innerHTML = "4 Matched"
+        }else if(slotMachine.check3Matches(arr) === true){
+            matchType.innerHTML = "3 Matched"
         }else{
             matchType.innerHTML = "Not a Match"
         }
@@ -378,66 +384,47 @@ class Machine {
     }
 
     renderWin1CoinAnimation() {
-        $(".slot1Image").animate({
+        $(".slot-images").animate({
             marginTop: "1%"
         })
-        $(".slot1Image").animate({
+        $(".slot-images").animate({
             marginTop: "-5%"
         })
-        $(".slot1Image").animate({
+        $(".slot-images").animate({
             marginTop: "1%"
         })
-        $(".slot1Image").animate({
+        $(".slot-images").animate({
             marginTop: "0%"
         })
-        $(".slot2Image").animate({
+    }
+
+    renderMatch4Animation() {
+        $(".slot-images").animate({
+            marginTop: "-1%"
+        })
+        $(".slot-images").animate({
             marginTop: "1%"
         })
-        $(".slot2Image").animate({
-            marginTop: "-5%"
+        $(".slot-images").animate({
+            marginTop: "-1%"
         })
-        $(".slot2Image").animate({
+        $(".slot-images").animate({
             marginTop: "1%"
         })
-        $(".slot2Image").animate({
+        $(".slot-images").animate({
+            marginTop: "-3%"
+        })
+        $(".slot-images").animate({
+            marginTop: "1%"
+        })
+        $(".slot-images").animate({
             marginTop: "0%"
         })
-        $(".slot3Image").animate({
-            marginTop: "1%"
-        })
-        $(".slot3Image").animate({
-            marginTop: "-5%"
-        })
-        $(".slot3Image").animate({
-            marginTop: "1%"
-        })
-        $(".slot3Image").animate({
-            marginTop: "0%"
-        })
-        $(".slot4Image").animate({
-            marginTop: "1%"
-        })
-        $(".slot4Image").animate({
-            marginTop: "-5%"
-        })
-        $(".slot4Image").animate({
-            marginTop: "1%"
-        })
-        $(".slot4Image").animate({
-            marginTop: "0%"
-        })
-        $(".slot5Image").animate({
-            marginTop: "1%"
-        })
-        $(".slot5Image").animate({
-            marginTop: "-5%"
-        })
-        $(".slot5Image").animate({
-            marginTop: "1%"
-        })
-        $(".slot5Image").animate({
-            marginTop: "0%"
-        })
+    }
+
+    renderLoserSound() {
+        let loserSound = new Audio("./audio/loser.mp3")
+        loserSound.play()
     }
 }
 
