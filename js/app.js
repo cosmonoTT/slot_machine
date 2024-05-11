@@ -108,6 +108,9 @@ class Machine {
                 slotMachine.renderAnimation()
                 slotMachine.renderPlaySound()
                 setTimeout(function() {
+                    slotMachine.renderWin1CoinAnimation()
+                }, 1500)
+                setTimeout(function() {
                     slotMachine.render1CoinSound()
                 }, 2000)
                 setTimeout(function(wag) {
@@ -372,6 +375,69 @@ class Machine {
     render1CoinSound() {
         let coinSound = new Audio("./audio/win1coin.mp3")
         coinSound.play()
+    }
+
+    renderWin1CoinAnimation() {
+        $(".slot1Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot1Image").animate({
+            marginTop: "-5%"
+        })
+        $(".slot1Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot1Image").animate({
+            marginTop: "0%"
+        })
+        $(".slot2Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot2Image").animate({
+            marginTop: "-5%"
+        })
+        $(".slot2Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot2Image").animate({
+            marginTop: "0%"
+        })
+        $(".slot3Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot3Image").animate({
+            marginTop: "-5%"
+        })
+        $(".slot3Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot3Image").animate({
+            marginTop: "0%"
+        })
+        $(".slot4Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot4Image").animate({
+            marginTop: "-5%"
+        })
+        $(".slot4Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot4Image").animate({
+            marginTop: "0%"
+        })
+        $(".slot5Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot5Image").animate({
+            marginTop: "-5%"
+        })
+        $(".slot5Image").animate({
+            marginTop: "1%"
+        })
+        $(".slot5Image").animate({
+            marginTop: "0%"
+        })
     }
 }
 
