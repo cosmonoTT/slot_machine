@@ -22,17 +22,16 @@ h3 {
 
 .custom-wager {
     display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
-    width: 50vw;
-    height: 5vh;
+    flex-direction: row;
+    width: 55vw;
+    justify-content: space-around;
     display: none;
-    flex-wrap: wrap;
 }
 
 .hiding-buttons {
     left: 5%;
     position: relative;
+    height: 10vh;
 }
 
 #inputTitle {
@@ -42,6 +41,7 @@ h3 {
 
 input {
     font-size: 20px;
+    height: 30px;
 }
 
 #enterInput {
@@ -81,9 +81,4 @@ button {
     color: white;
     border-color: black;
     border-width: medium;
-}
-
-#enterInput {
-    height: 5vh;
-    width: 6vh;
 }

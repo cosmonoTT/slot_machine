@@ -53,8 +53,10 @@ class Machine {
 
     animationImages = ["./img/loading1.png", "./img/loading2.png", "./img/loading3.png"]
 
+    audio = ["./audio/play.mp3"]
+
     subtractScore(num1) {
-        this.score -= num1
+        this.score = this.score - num1
     }
 
     addScore(num1) {
@@ -74,45 +76,58 @@ class Machine {
                 console.log("match")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
+                slotMachine.renderPlaySound()
+                setTimeout(function() {
+                    slotMachine.renderWinSound()
+                }, 2000)
                 setTimeout(function(wag) {
                     slotMachine.addScore(slotMachine.currentWager * slotMachine.score)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function() {
                     slotMachine.renderButtonUsable()
-                }, 1000)
+                }, 2000)
             }else if(slotMachine.check4Matches(slotArray) === true){
                 console.log("4 matched")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
-                setTimeout(function(wag) {
+                slotMachine.renderPlaySound()
+                setTimeout(function() {
+                    slotMachine.renderWinSound()
+                }, 2000)
+                setTimeout(function(wag, wag2) {
                     slotMachine.addScore(slotMachine.currentWager * slotMachine.score / 2)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function(wag) {
                     slotMachine.renderButtonUsable()
-                }, 1000)
+                }, 2000)
             }else if(slotMachine.check3Matches(slotArray) === true){
                 console.log("3 matched")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
+                slotMachine.renderPlaySound()
+                setTimeout(function() {
+                    slotMachine.render1CoinSound()
+                }, 2000)
                 setTimeout(function(wag) {
                     slotMachine.addScore(slotMachine.currentWager)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function(wag) {
                     slotMachine.renderButtonUsable()
-                }, 1000)
+                }, 2000)
             }else{
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
+                slotMachine.renderPlaySound()
                 setTimeout(function(wag) {
                     slotMachine.subtractScore(slotMachine.currentWager)
                 }, 1000)
                 slotMachine.renderPlayInfo(slotArray)
                 setTimeout(function() {
                     slotMachine.renderButtonUsable()
-                }, 1000)
+                }, 2000)
             }
         }else if(slotMachine.score <= 0){
             slotMachine.renderLoseScenario()
@@ -244,10 +259,10 @@ class Machine {
     renderCustomWagerButton() {
         let inputField = document.querySelector("input")
         let customWager = inputField.value
-        slotMachine.wager4 = customWager
+        this.wager4 = Number(customWager)
         let currentWager = document.getElementById("currentWager")
-        slotMachine.currentWager = customWager
-        currentWager.innerHTML = slotMachine.wager4
+        this.currentWager = this.wager4
+        currentWager.innerHTML = this.currentWager
         slotMachine.renderButtonUsable()
         let customWagerArea = document.querySelector(".custom-wager")
         customWagerArea.style.display = "none"
@@ -342,6 +357,21 @@ class Machine {
     hideCustomWagerButton() {
       let customWagerButton = document.getElementById("enterCustomWager")
       customWagerButton.style.display = "none"  
+    }
+
+    renderPlaySound() {
+        let playSound = new Audio("./audio/play.mp3")
+        playSound.play()
+    }
+
+    renderWinSound() {
+        let winSound = new Audio("./audio/win.mp3")
+        winSound.play()
+    }
+
+    render1CoinSound() {
+        let coinSound = new Audio("./audio/win1coin.mp3")
+        coinSound.play()
     }
 }
 
