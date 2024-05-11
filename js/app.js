@@ -76,8 +76,17 @@ class Machine {
                 slotMachine.renderAnimation()
                 slotMachine.renderPlaySound()
                 setTimeout(function() {
+                    slotMachine.renderMatch4Animation()
+                }, 1500)
+                setTimeout(function() {
+                    slotMachine.renderWin1CoinAnimation()
+                }, 3500)
+                setTimeout(function() {
                     slotMachine.renderWinSound()
                 }, 2000)
+                setTimeout(function() {
+                    slotMachine.renderMatchSound()
+                }, 3000)
                 setTimeout(function(wag) {
                     slotMachine.addScore(slotMachine.currentWager * slotMachine.score)
                 }, 1000)
@@ -388,7 +397,7 @@ class Machine {
             marginTop: "1%"
         })
         $(".slot-images").animate({
-            marginTop: "-5%"
+            marginTop: "-3%"
         })
         $(".slot-images").animate({
             marginTop: "1%"
@@ -425,6 +434,11 @@ class Machine {
     renderLoserSound() {
         let loserSound = new Audio("./audio/loser.mp3")
         loserSound.play()
+    }
+
+    renderMatchSound() {
+        let matchSound = new Audio("./audio/match.mp3")
+        matchSound.play()
     }
 }
 
