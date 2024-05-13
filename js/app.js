@@ -131,6 +131,7 @@ class Machine {
                     slotMachine.renderButtonUsable()
                 }, 2000)
             }else{
+                console.log("not a match")
                 slotMachine.renderAnimationImage()
                 slotMachine.renderAnimation()
                 slotMachine.renderPlaySound()
