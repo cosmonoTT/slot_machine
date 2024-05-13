@@ -4,9 +4,6 @@
 For my first project I decided to tackle making a browser based slot machine game. My goal for this project was to have a clean yet colorful take on a modern slot machine game, with simple animations and sounds to add to the user experience.
 
 ## Images
-./img/screen1.png
-./img/screen2.png
-./img/screen3.png
 
 ## Technologies used
 My game utilizes CSS, Javascript, and HTML.
