@@ -13,6 +13,7 @@ body {
 h1 {
     left: 3%;
     position: relative;
+    width: 27vw;
 }
 
 .hover {
