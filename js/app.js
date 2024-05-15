@@ -54,7 +54,7 @@ class Machine {
     animationImages = ["./img/loading1.png", "./img/loading2.png", "./img/loading3.png"]
 
     subtractScore(num1) {
-        this.score = this.score - num1
+        this.score -= num1
     }
 
     addScore(num1) {
