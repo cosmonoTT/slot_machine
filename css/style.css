@@ -5,14 +5,18 @@ body {
     font-style: normal;
 }
 
+.top-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 h1 {
     left: 3%;
     position: relative;
 }
 
-h2 {
-    left: 3%;
-    position: relative;
+.hover {
+    font-size: 9px;
 }
 
 h3 {

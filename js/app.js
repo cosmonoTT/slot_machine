@@ -256,6 +256,7 @@ class Machine {
         this.renderWagerButtons()
         this.renderCurrentWager(this.wager1)
         this.renderResetButton()
+        this.showHover()
     }
 
     renderPlayInfo(arr) {
@@ -441,6 +442,19 @@ class Machine {
         let matchSound = new Audio("./audio/match.mp3")
         matchSound.play()
     }
+
+    showHover() {
+        let title = document.querySelector("h1")
+        let hover = document.querySelector(".hover")
+        hover.style.display = "none"
+        title.addEventListener("mouseover", function() {
+            hover.style.display = "block"
+            setTimeout(function() {
+                hover.style.display = "none"
+            }, 10000)
+        })
+    }
+
 }
 
 const slotMachine = new Machine(1, 5, 10, null, "number must meet parameters", 50)
