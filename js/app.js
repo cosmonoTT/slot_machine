@@ -1,4 +1,3 @@
-// a class for my machine
 class Machine {
 
     constructor(wager1, wager2, wager3, wager4, wager5, score) {
@@ -256,7 +255,6 @@ class Machine {
         this.renderWagerButtons()
         this.renderCurrentWager(this.wager1)
         this.renderResetButton()
-        this.showHover()
     }
 
     renderPlayInfo(arr) {
@@ -441,18 +439,6 @@ class Machine {
     renderMatchSound() {
         let matchSound = new Audio("./audio/match.mp3")
         matchSound.play()
-    }
-
-    showHover() {
-        let title = document.querySelector("h1")
-        let hover = document.querySelector(".hover")
-        hover.style.display = "none"
-        title.addEventListener("mouseover", function() {
-            hover.style.display = "block"
-            setTimeout(function() {
-                hover.style.display = "none"
-            }, 10000)
-        })
     }
 
 }

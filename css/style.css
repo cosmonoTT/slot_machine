@@ -5,19 +5,14 @@ body {
     font-style: normal;
 }
 
-.top-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
 h1 {
     left: 3%;
     position: relative;
-    width: 27vw;
 }
 
-.hover {
-    font-size: 9px;
+h2 {
+    left: 3%;
+    position: relative;
 }
 
 h3 {
@@ -28,7 +23,7 @@ h3 {
 .custom-wager {
     display: flex;
     flex-direction: row;
-    width: 55vw;
+    width: 45vw;
     justify-content: space-around;
     display: none;
 }
